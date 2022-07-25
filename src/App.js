@@ -49,27 +49,11 @@ function App() {
       {messages &&
         messages.map((messages, index) => (
           <>
-            <p style={{ display: "flex" }} key={index}>
-              <Typewriter
-                options={{
-                  delay: 1,
-                  cursor: "",
-                }}
-                onInit={(typewriter) => {
-                  typewriter
-                    .typeString(
-                      "<span id='a'>guest@morseeee</span>:<span id='b'>~</span><span id='c'>$</span>"
-                    )
-                    .callFunction(() => {
-                      console.log("All strings were deleted");
-                    })
-                    .start();
-                }}
-              />
+            <p style={{ display: "flex" }} key={index}>       
               <span>
-                {messages.key}
+              <span id='a'>guest@morseeee</span>:<span id='b'>~</span><span id='c'>$</span> 
                 <i></i>
-              </span>{" "}
+              </span>{messages.key}
             </p>
             <Typewriter
               options={{
@@ -118,7 +102,7 @@ function App() {
         </p>
       )}
 
-      {tempMessage ? (
+      {/* {tempMessage ? (
         <Typewriter
           options={{
             delay: 1,
@@ -135,7 +119,7 @@ function App() {
         />
       ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }
