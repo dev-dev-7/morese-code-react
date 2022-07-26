@@ -1,32 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
+import CommandInput from "./CommandInput";
 function App() {
-  const commandInput = useRef(null);
-  const [show, setShow] = useState(false);
-  const [askCommand, setAskCommand] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [tempMessage, setTempMessage] = useState("");
+  const [askCommand, setAskCommandd] = useState([]);
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      messages.push({
-        key: event.target.value,
-        message: "Command not found. Type 'help' to see list of commands.",
-      });
-      let updated = messages;
-      setMessages(updated);
-      setTempMessage("Command not found. Type 'help' to see list of commands.");
-    }
+  const setAskCommand = (val) => {    
+   setAskCommandd([...askCommand, val]);
+    
   };
-
-  useEffect(() => {
-    if (commandInput.current) {
-      commandInput.current.focus();
-    }
-  }, [show]);
-
-  console.log("messages: ", messages);
-
   return (
     <div id="console">
       <h1 className="glitch">Morse code !!!</h1>
@@ -41,85 +22,14 @@ function App() {
               "<span id='consoleText'>Welcome! Type 'help' to see list of commands. </span>"
             )
             .callFunction(() => {
-              setShow(true);
+              setAskCommandd([...askCommand, 0]);
             })
             .start();
         }}
       />
-      {messages &&
-        messages.map((messages, index) => (
-          <>
-            <p style={{ display: "flex" }} key={index}>       
-              <span>
-              <span id='a'>guest@morseeee</span>:<span id='b'>~</span><span id='c'>$</span> 
-                <i></i>
-              </span>{messages.key}
-            </p>
-            <Typewriter
-              options={{
-                delay: 1,
-                cursor: "",
-              }}
-              onInit={(typewriter) => {
-                typewriter
-                  .typeString(messages.message)
-                  .callFunction(() => {
-                    setAskCommand(true);
-                  })
-                  .start();
-              }}
-            />
-          </>
-        ))}
+      {askCommand.length>0 && askCommand?.map((card, i) => ( <CommandInput setAskCommand={setAskCommand} index={i}/>))}
 
-      {show && (
-        <p style={{ display: "flex" }}>
-          <Typewriter
-            options={{
-              delay: 1,
-              cursor: "",
-            }}
-            onInit={(typewriter) => {
-              typewriter
-                .typeString(
-                  "<span id='a'>guest@morse</span>:<span id='b'>~</span><span id='c'>$</span>"
-                )
-                .callFunction(() => {
-                  console.log("All strings were deleted");
-                })
-                .start();
-            }}
-          />
-          <span class="cursor">
-            <input
-              type="text"
-              class="datainput"
-              onKeyDown={(e) => handleKeyDown(e)}
-              ref={commandInput}
-            />
-            <i></i>
-          </span>{" "}
-        </p>
-      )}
 
-      {/* {tempMessage ? (
-        <Typewriter
-          options={{
-            delay: 1,
-            cursor: "",
-          }}
-          onInit={(typewriter) => {
-            typewriter
-              .typeString(tempMessage)
-              .callFunction(() => {
-                setAskCommand(true);
-              })
-              .start();
-          }}
-        />
-      ) : (
-        ""
-      )} */}
     </div>
   );
 }
