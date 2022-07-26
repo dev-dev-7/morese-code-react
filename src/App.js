@@ -1,13 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
 import CommandInput from "./CommandInput";
+import CommandList from "./CommandList";
 function App() {
   const [askCommand, setAskCommandd] = useState([]);
+  const [quesList, setQuesList] = useState([
+  ".- .-.. .-.. ... . -.-. .-. . - ... -- ..- ... - -. --- - -... . --- -... ...- .. --- ..- ... --..-- --- .-. - .... . -.-- .-.. --- ... . - .... . .. .-. ...- .- .-.. ..- .",
+  " - .... .-. . . .- .-. .-. --- .-- ... -.-. .- .--. .. - .- .-.. -.. ..- . - --- - .... . .. .-. .-.. --- ... ... --- ..-. -.-. --- -. ..-. .. -.. . -.",
+  "-.-. . .- -. -.. .- -... .. .-.. .. - -.-- - --- -.. .. ... .- .--. .--. . .- .-. ..-. --- .-. .... --- .-- .-.. --- -. --.",
+  ". -. - . .-. / - .... . / -.-. --- -.. ."]);
+const [cmd, setCmd] = useState([]);
+
+const setAskCommand1 = (val) => {  
+ if(val<4){
+  setAskCommandd([...askCommand, quesList[val]]);
+ }
+ };
 
   const setAskCommand = (val) => {    
-   setAskCommandd([...askCommand, val]);
-    
+   setAskCommandd([...askCommand, val]);    
   };
+
   return (
     <div id="console">
       <h1 className="glitch">Morse code !!!</h1>
@@ -19,15 +32,16 @@ function App() {
         onInit={(typewriter) => {
           typewriter
             .typeString(
-              "<span id='consoleText'>Welcome! Type 'help' to see list of commands. </span>"
+              ""
             )
-            .callFunction(() => {
-              setAskCommandd([...askCommand, 0]);
+            .callFunction(() => {          
+            setAskCommandd([...askCommand, quesList[0]]);     
             })
             .start();
         }}
       />
-      {askCommand.length>0 && askCommand?.map((card, i) => ( <CommandInput setAskCommand={setAskCommand} index={i}/>))}
+      {/* {cmd.length>0 && cmd?.map((command, i) => ( <CommandList command={command} setAskCommand1={setAskCommand1} key={i} index={i}/>))} */}
+        {askCommand.length>0 && askCommand?.map((ques, i) => ( <CommandInput ques={ques}  setAskCommand1={setAskCommand1} setAskCommand={setAskCommand} index={i}  key={i}/>))} 
 
 
     </div>
