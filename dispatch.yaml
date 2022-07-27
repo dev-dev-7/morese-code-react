@@ -1,0 +1,5 @@
+dispatch:
+  - url: "rentnode.io/*"
+    service: default
+  - url: "morsecodeth.com/*"
+    service: morsecode
