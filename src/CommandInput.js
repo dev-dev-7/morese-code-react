@@ -72,6 +72,7 @@ function CommandInput({ques="<span id='a'>guest@morse</span>:<span id='b'>~</spa
                   typewriter
                     .typeString("..- -. .-.. --- -.-. -.- - .... . -- -.-- ... - . .-. -.-- --..-- .- -. -.. .... . .-. . .----. ... ... --- -- . - .... .. -. --. -.-- --- ..- -. . ...- . .-. . -..- .--. . -.-. - . -..")
                     .pauseFor(3).typeString("<br/>. -.-. .-. .- ... .... --..-- -.-. .-. .- ... .... --..-- .--. .-. --- ...- . -.-- --- ..- .-. .- -... .. .-.. .. - -.-- --..-- .--. .-. --- ...- . -.-- --- ..- .-. -- .. -. -.. --..-- .--. .-. --- ...- . -.-- --- ..- .-. .. -. - . .-.. .-.. .. --. . -. -.-. .")
+                    .pauseFor(3).typeString("<br/>- . .-.. . --. .-. .- --")
                     .pauseFor(3).typeString("<br/>https://t.me/morseerc")
                     .callFunction(() => {
                       setAskCommand("<span id='a'>guest@morse</span>:<span id='b'>~</span><span id='c'>$</span>");

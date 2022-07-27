@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
+import telegram from './images/telegram.svg';
+import twitter from './images/twitter.svg';
 import CommandInput from "./CommandInput";
 import CommandList from "./CommandList";
 function App() {
@@ -23,6 +25,21 @@ const setAskCommand1 = (val) => {
   };
 
   return (
+    <>
+    <h1  className='socialmedia'>
+        <a
+                target="_blank"
+                href="https://twitter.com/morseerc"
+                style={{ marginRight: '40%'}}> <img src={twitter} /> </a>
+    
+   
+    <a
+                target="_blank"
+                href="https://t.me/morseerc"
+              > <img src={telegram} />  
+                </a>
+    </h1>
+ 
     <div id="console">
       <h1 className="glitch">Morse code !!!</h1>
       <Typewriter
@@ -45,7 +62,7 @@ const setAskCommand1 = (val) => {
         {askCommand.length>0 && askCommand?.map((ques, i) => ( <CommandInput ques={ques}  setAskCommand1={setAskCommand1} setAskCommand={setAskCommand} index={i}  key={i}/>))} 
 
 
-    </div>
+    </div>  </>
   );
 }
 
